@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="src" path="wp-content/plugins"/>
+	<buildpathentry kind="src" path="wp-content/themes"/>
+	<buildpathentry excluding="css/|images/|js/" kind="src" path="wp-admin"/>
+	<buildpathentry excluding="css/|images/|js/" kind="src" path="wp-includes"/>
+	<buildpathentry including="*.php" kind="src" path=""/>
+</buildpath>
