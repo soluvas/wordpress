@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wordpress">
+	<property file="deploy.properties"/>
+	<property file="development.properties"/>
+	
+	<target name="dev.copy" description="Copy WordPress files to  development instance. It WILL overwrite existing files/links except wp-content and wp-config.php.">
+		<fail unless="wordpress.dir"/>
+		<mkdir dir="${wordpress.dir}"/>
+		
+		<!-- wp-content -->
+		<copy todir="${wordpress.dir}/wp-content" overwrite="false" verbose="true">
+			<fileset dir="wp-content"/>
+		</copy>
+		
+		<!-- global files -->
+		<copy todir="${wordpress.dir}" overwrite="true" verbose="true">
+			<fileset dir="." includes="*.php *.html *.txt wp-admin/** wp-includes/**" excludes="wp-config.php"/>
+		</copy>
+
+	</target>
+
+	<target name="dev.delete" description="Delete WordPress files from in ${wordpress.dir}. It will not delete wp-config.php and wp-content.">
+		<fail unless="wordpress.dir"/>
+		
+		<delete verbose="true" includeemptydirs="true">
+			<fileset dir="${wordpress.dir}" includes="wp-admin/** wp-includes/**"/>
+			<fileset dir="${wordpress.dir}">
+				<include name="index.php"/>
+				<include name="license.txt"/>
+				<include name="readme.html"/>
+				<include name="wp-activate.php"/>
+				<include name="wp-app.php"/>
+				<include name="wp-blog-header.php"/>
+				<include name="wp-comments-post.php"/>
+				<include name="wp-config-sample.php"/>
+				<include name="wp-cron.php"/>
+				<include name="wp-links-opml.php"/>
+				<include name="wp-load.php"/>
+				<include name="wp-login.php"/>
+				<include name="wp-mail.php"/>
+				<include name="wp-pass.php"/>
+				<include name="wp-register.php"/>
+				<include name="wp-settings.php"/>
+				<include name="wp-signup.php"/>
+				<include name="wp-trackback.php"/>
+				<include name="xmlrpc.php"/>
+			</fileset>
+		</delete>
+			
+	</target>
+
+</project>
